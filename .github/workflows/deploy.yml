@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to Vercel
         env:
-          VERCEL_TOKEN: ${{ variables.VERCEL_TOKEN }} # 使用 GitHub Secrets 中的 Vercel Token
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} # 使用 GitHub Secrets 中的 Vercel Token
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # 使用 GitHub Secrets 中的 Vercel 组织 ID
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # 使用 GitHub Secrets 中的 Vercel 项目 ID
         run: |
