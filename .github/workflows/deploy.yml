@@ -32,5 +32,4 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # 使用 GitHub Secrets 中的 Vercel 组织 ID
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # 使用 GitHub Secrets 中的 Vercel 项目 ID
         run: |
-          vercel login $VERCEL_TOKEN  # 登录 Vercel（通过 token）
-          vercel --token $VERCEL_TOKEN --org $VERCEL_ORG_ID --project $VERCEL_PROJECT_ID --prod  # 部署到生产环境
+          vercel --token $VERCEL_TOKEN --org $VERCEL_ORG_ID --project $VERCEL_PROJECT_ID --prod  # 直接通过 token 部署到生产环境
