@@ -30,6 +30,6 @@ jobs:
           VERCEL_PROJECT_ID: prj_bC6SUXF0sfVZFtsfnu0qXB8HOo2Y # 你的 Vercel 项目 ID
         run: |
           curl -fsSL https://vercel.com/download -o vercel-linux.zip  # 下载 Vercel CLI
-          unzip vercel-linux.zip -d vercel  # 解压
+          unzip vercel-linux.zip  # 解压
           ./vercel/bin/vercel login $VERCEL_TOKEN  # 登录 Vercel（通过 token）
           ./vercel/bin/vercel --token $VERCEL_TOKEN --org $VERCEL_ORG_ID --project $VERCEL_PROJECT_ID --prod  # 部署到生产环境
