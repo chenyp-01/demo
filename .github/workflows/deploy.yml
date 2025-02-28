@@ -1,35 +1,44 @@
-name: Deploy to Vercel
-
+name: Deploy
 on:
   push:
-    branches:
-      - main # 只有在推送到 main 分支时触发
+    branches: main
+  pull_request:
+    branches: main
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest # 使用 Ubuntu 环境
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2 # 获取代码
+      - name: Clone repository
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
         with:
-          node-version: "18" # 设置 Node.js 版本（可以根据项目需求调整）
+          deno-version: v2.x
 
-      - name: Install dependencies
-        run: npm install # 安装项目依赖
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-      - name: Build the project
-        run: npm run build # 如果需要构建步骤，可以在这里加入
+      - name: Install step
+        run: "npm install"
 
-      - name: Install Vercel CLI
-        run: npm install -g vercel # 安装 Vercel CLI
+      - name: Build step
+        run: "NITRO_PRESET=deno-deploy npm run build"
 
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: OH06f3VVr6E268BBzAwWPSVX # 使用 GitHub Secrets 中的 Vercel Token
-          VERCEL_ORG_ID: mAQ1ol7qTICbEGoOpTnsdZfe # 使用 GitHub Secrets 中的 Vercel 组织 ID
-          VERCEL_PROJECT_ID: prj_bC6SUXF0sfVZFtsfnu0qXB8HOo2Y # 使用 GitHub Secrets 中的 Vercel 项目 ID
-        run: |
-          vercel --token OH06f3VVr6E268BBzAwWPSVX --prod
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: "deno-111"
+          entrypoint: "server/index.ts"
+          root: ".output"
+          
+          
