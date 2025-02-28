@@ -32,4 +32,4 @@ jobs:
           VERCEL_ORG_ID: mAQ1ol7qTICbEGoOpTnsdZfe # 使用 GitHub Secrets 中的 Vercel 组织 ID
           VERCEL_PROJECT_ID: prj_bC6SUXF0sfVZFtsfnu0qXB8HOo2Y # 使用 GitHub Secrets 中的 Vercel 项目 ID
         run: |
-          vercel --token OH06f3VVr6E268BBzAwWPSVX --org mAQ1ol7qTICbEGoOpTnsdZfe --project prj_bC6SUXF0sfVZFtsfnu0qXB8HOo2Y --prod  # 直接通过 token 部署到生产环境
+          vercel --token OH06f3VVr6E268BBzAwWPSVX --prod
