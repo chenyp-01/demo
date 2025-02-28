@@ -25,9 +25,9 @@ jobs:
 
       - name: Deploy to Vercel
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} # 使用 GitHub Secrets 中的 Vercel Token
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # 你的 Vercel 组织 ID
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # 你的 Vercel 项目 ID
+          VERCEL_TOKEN: OH06f3VVr6E268BBzAwWPSVX # 使用 GitHub Secrets 中的 Vercel Token
+          VERCEL_ORG_ID: mAQ1ol7qTICbEGoOpTnsdZfe # 你的 Vercel 组织 ID
+          VERCEL_PROJECT_ID: prj_bC6SUXF0sfVZFtsfnu0qXB8HOo2Y # 你的 Vercel 项目 ID
         run: |
           curl -fsSL https://vercel.com/download -o vercel-linux.zip  # 下载 Vercel CLI
           unzip vercel-linux.zip -d vercel  # 解压
